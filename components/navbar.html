@@ -1,0 +1,32 @@
+<!doctypehtml>
+<html lang=en>
+<body>
+<script src=../assets/js/main.js></script>
+<nav><a href=/home onclick='return page("/home"),!1' class=logo-link id=logo-link>
+<div class=logo><img alt=Logo class="loaded main-logo" src=../assets/images/LOGOS/Logos-01.png></div>
+</a>
+<div class=loading-spinner-container id=loading-spinner-container>
+<div class=loading-spinner></div>
+</div>
+<div class=hamburger onclick=toggleMenu() aria-label="Toggle menu"><span class=line></span> <span class=line></span> <span class=line></span></div>
+<ul class=nav-links>
+<li><a href=/home onclick='return page("/home"),!1'>Home</a>
+<li><a href=/about onclick='return page("/about"),!1'>About</a>
+<li><a href=/portfolio onclick='return page("/portfolio"),!1'>Portfolio</a>
+<li><a href=/dazzle-suk onclick='return page("/dazzle-suk"),!1'>Dazzle-Suk</a>
+</ul>
+<div class=contact-container><a href=/contact onclick='return page("/contact"),!1' class=contact-link>Contact
+Us</a></div>
+</nav>
+<div class=overlay onclick=toggleMenu()></div>
+<div class=menubar>
+<ul>
+<li><a href=/home onclick='return page("/home"),!1'>Home</a>
+<li><a href=/about onclick='return page("/about"),!1'>About</a>
+<li><a href=/portfolio onclick='return page("/portfolio"),!1'>Portfolio</a>
+<li><a href=/dazzle-suk onclick='return page("/dazzle-suk"),!1'>Dazzle-Suk</a>
+<li><a href=/contact onclick='return page("/contact"),!1' class=contact-link>Contact Us</a>
+</ul>
+</div>
+</body>
+</html>

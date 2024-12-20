@@ -1,0 +1,302 @@
+@font-face {
+  font-family: "Poppins";
+  src: url(/assets/fonts/Poppins/Poppins/Poppins-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url(/assets/fonts/Poppins/Poppins/Poppins-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url(/assets/fonts/Poppins/Poppins/Poppins-ExtraBold.ttf)
+    format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  flex-wrap: wrap;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0 100px;
+}
+
+.footer-column {
+  flex: 1;
+  margin: 50px 0;
+  padding: 0;
+}
+
+.icon-container,
+.icon-container .icon-box {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #fff;
+}
+
+.icon-container {
+  gap: 10px;
+  line-height: 1.8;
+}
+
+.icon-container a {
+  font-size: 16px;
+}
+
+.icon-container span {
+  font-size: 16px;
+  letter-spacing: 0.5;
+}
+
+.icon-container .icon-box {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  padding: 10px;
+  margin: 10px 0;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.icon-container .icon-box i {
+  color: #fff;
+  font-size: 16px;
+}
+
+.navbar-links ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.navbar-links ul li {
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.icon-container a,
+.icon-container span,
+.navbar-links ul li a,
+.social-icon-box .icon-box a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.navbar-links ul li a {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.navbar-links ul li a:hover {
+  scale: 1.1;
+}
+
+.footer-column.social-links {
+  margin: 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social-icon-box {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.social-icon-box .icon-box {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+}
+
+.social-icon-box .icon-box a {
+  font-size: 16px;
+}
+
+.icon-box a:hover {
+  color: #0077b5;
+}
+
+.footer-brand {
+  margin-top: 30px;
+}
+
+.copyright {
+  background-color: #fff;
+  width: 100%;
+  max-width: 100%;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.copyright a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .footer-section {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+  }
+
+  .footer-column {
+    margin: 0;
+    padding: 0 auto;
+    width: 100%;
+  }
+
+  .navbar-links {
+    order: -1;
+  }
+
+  .footer-column.social-links {
+    margin: 50px 0;
+  }
+
+  .social-icon-box {
+    order: 2;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .icon-container {
+    font-size: 16px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .navbar-links ul li {
+    font-size: 14px;
+  }
+
+  .navbar-links ul li a {
+    font-size: 12px;
+  }
+
+  .footer-brand {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .footer-column {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .navbar-links {
+    order: -1;
+  }
+
+  .social-icon-box {
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .icon-container {
+    font-size: 14px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .icon-container a {
+    font-size: 14px;
+    margin-right: 6rem;
+  }
+
+  .icon-container span {
+    font-size: 14px;
+    margin-right: 2.5rem;
+  }
+
+  .icon-container .icon-box,
+  .social-icon-box .icon-box {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon-container .icon-box i {
+    font-size: 16px;
+  }
+
+  .social-icon-box .icon-box i {
+    font-size: 20px;
+  }
+
+  .footer-brand {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .copyright {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+  }
+  .copyright p {
+    font-size: 14px;
+  }
+  .copyright a {
+    font-size: 14px;
+  }
+}

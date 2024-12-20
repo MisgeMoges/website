@@ -1,0 +1,255 @@
+<!doctypehtml>
+    <html lang=en>
+    <meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dazzle-Suk</title>
+    <link href=../assets/css/main.css rel=stylesheet>
+    <link href=../assets/css/lightbox.css rel=stylesheet>
+    <link href=../assets/css/footer.css rel=stylesheet>
+    <link href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css rel=stylesheet>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: auto;
+            font-family: Poppins, sans-serif;
+        }
+    
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow: auto;
+        }
+    
+        #loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, .9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: visible;
+            opacity: 1;
+            transition: opacity .5s ease-in-out;
+        }
+    
+        .spinner {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            border: 10px solid rgba(255, 255, 255, .3);
+            border-top: 10px solid #3498db;
+            border-radius: 50%;
+            animation: spin 2s linear infinite, pulse 1.5s ease-in-out infinite;
+        }
+    
+        .spinner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 10px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            animation-delay: .5s;
+        }
+    
+        @keyframes spin {
+            0% {
+                transform: rotate(0);
+            }
+    
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+    
+            50% {
+                transform: scale(1.3);
+                opacity: .5;
+            }
+    
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    
+        #footer-container,
+        #navbar-container {
+            display: none;
+        }
+    
+        #main-content {
+            display: none;
+        }
+    
+        @media only screen and (max-width:768px) {
+            .spinner {
+                width: 60px;
+                height: 60px;
+                border-width: 6px;
+            }
+    
+            .spinner::before {
+                border-width: 6px;
+            }
+    
+            #loading-spinner {
+                padding: 1rem;
+                background-color: rgba(255, 255, 255, .95);
+            }
+        }
+    
+        @media only screen and (max-width:480px) {
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border-width: 4px;
+            }
+    
+            .spinner::before {
+                border-width: 4px;
+            }
+    
+            #loading-spinner {
+                background-color: rgba(255, 255, 255, 1);
+            }
+        }
+    
+        /* Ensure that the spinner stays centered and responsive */
+        @media only screen and (max-width: 767px) {
+            #loading-spinner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            .spinner {
+                width: 80px;
+                height: 80px;
+                border-width: 8px;
+            }
+        }
+    </style>
+    
+    <div id=loading-spinner>
+        <div class=spinner></div>
+    </div>
+    <div id=navbar-container></div>
+    <main id=main-content></main>
+    <div id=footer-container></div>
+    <script>document.addEventListener("DOMContentLoaded", async function () {
+        const loadingSpinner = document.getElementById("loading-spinner");
+        const navbarContainer = document.getElementById("navbar-container");
+        const mainContent = document.getElementById("main-content");
+        const footerContainer = document.getElementById("footer-container");
+    
+        const routes = {
+            "/home": "../components/Heropage.html",
+            "/about": "../pages/about.html",
+            "/portfolio": "../pages/portfolio.html",
+            "/dazzle-suk": "../pages/dazzle-suk.html",
+            "/contact": "../pages/contact.html",
+        };
+    
+        // Helper function to load HTML content
+        async function loadHTML(url, container) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`${url} not found`);
+                const html = await response.text();
+                container.innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading ${url}:`, error);
+                container.innerHTML = `<p>Error loading content.</p>`;
+            } finally {
+                container.style.display = 'block';  // Ensure the container is displayed
+            }
+        }
+    
+        // Initially hide the footer to prevent flickering
+        footerContainer.style.display = 'none';
+    
+        // Load Navbar and Footer
+        await Promise.all([
+            loadHTML("../components/navbar.html", navbarContainer),
+            loadHTML("../components/footer.html", footerContainer),
+        ]);
+    
+        // Function to handle page navigation
+        function page(path) {
+            history.pushState({}, "", path);
+            loadContent(path);
+        }
+    
+        // Load page content dynamically
+        async function loadContent(path) {
+            const pagePath = routes[path] || routes["/home"];
+            showLoadingSpinner();
+    
+            try {
+                const response = await fetch(pagePath);
+                if (!response.ok) throw new Error("Page not found");
+                const html = await response.text();
+                updateMainContent(html);
+            } catch (error) {
+                console.error("Error loading page:", error);
+                updateMainContent("<h1>Error loading page. Please try again later.</h1>");
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+    
+        // Show the loading spinner
+        function showLoadingSpinner() {
+            loadingSpinner.style.display = "flex";
+            mainContent.style.display = "none";
+            footerContainer.style.display = 'none'; // Hide the footer while loading
+        }
+    
+        // Hide the loading spinner
+        function hideLoadingSpinner() {
+            loadingSpinner.style.opacity = "0";
+            setTimeout(() => {
+                loadingSpinner.style.display = "none";
+            }, 500);
+        }
+    
+        // Update main content and avoid excessive DOM manipulation
+        function updateMainContent(content) {
+            mainContent.innerHTML = content; // Update all at once
+            mainContent.style.display = "block";
+            footerContainer.style.display = "block"; // Show footer after content is loaded
+        }
+    
+        // Handle browser back button
+        window.onpopstate = () => {
+            loadContent(window.location.pathname);
+        };
+    
+        // Initial content load
+        const initialPath = window.location.pathname || "/home";
+        loadContent(initialPath);
+    
+        // Expose page function for navigation
+        window.page = page;
+    });
+    </script>
+    <script src=../assets/js/main.js></script>
+    <script src=../assets/js/lightbox-plus-jquery.js></script>
