@@ -94,7 +94,7 @@ body {
   max-width: 100%;
   text-align: center;
   line-height: 85px;
-  margin-right: -600px;
+  margin-right: 0px;
 }
 
 .hero-content h1,
@@ -109,7 +109,7 @@ body {
 .hero-content h1 {
   color: transparent;
   font-family: "Poppins", sans-serif;
-  font-size: 4rem;
+  font-size: 5rem;
   -webkit-text-stroke: 0.8px #fff;
 }
 
@@ -343,58 +343,11 @@ input[type="radio"] {
   }
 }
 
-/* @media screen and (max-width: 1366px) {
-  .hero-section {
-    padding: 30px 50px;
-    min-height: 200px;
-  }
-
-  .hero-content,
-  .hero-image {
-    position: absolute;
-    max-width: 100%;
-  }
-
-  .hero-content {
-    flex: 1;
-    position: absolute;
-    top: 25%;
-    left: 0%;
-    line-height: 85px;
-  }
-
-  .hero-content h1,
-  .hero-content h2 {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-  }
-
+@media screen and (max-width: 1440px) {
   .hero-content h1 {
-    font-size: 6rem;
-    color: transparent;
-    -webkit-text-stroke: 0.8px #fff;
-  }
-
-  .hero-content h2 {
     font-size: 4rem;
-    color: #f2f2f2;
   }
-
-  .hero-image {
-    display: flex;
-    top: -35%;
-    left: -2%;
-    transform: none;
-  }
-
-  .hero-image img {
-    width: 100%;
-    max-width: 800px;
-    height: 700px;
-    object-fit: contain;
-    border-radius: 0;
-  }
-} */
+}
 
 .service-card {
   height: auto;
